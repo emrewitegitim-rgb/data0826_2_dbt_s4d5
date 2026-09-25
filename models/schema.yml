@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: DBT_data08262
+    description: raw data for cc parcel tracking
+    tables:
+      - name: parcel
+        identifier: raw_cc_parcel
+        description: details of each parcel for an order
+        columns:
+          - name: Parcel_id
+            description: unique id of the parcel
+            tests:
+              - unique
+              - not_null
+          - name: Date_purCHase
+            description: purchase date of the order
+            tests:
+              - not_null
+      - name: parcel_product
+        identifier: raw_cc_parcel_product
+        description: details of each parcel for an order
+        columns:
+          - name: ParCEL_id
+            description: unique id of the parcel
+            tests:
+              - unique:
+                  arguments: 
+                    column_name: "ParCEL_id || '-' || Model_mAME"
+#  - name: iyzico
+
+#  - name: typeform
+
+#  - name: nextgen
+
+#  - name: sendgrid
